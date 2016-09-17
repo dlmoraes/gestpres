@@ -129,16 +129,11 @@ USE_TZ = True
 #    'Cache-Control': 'max-age=9460800',
 #}
 
-AWS_STORAGE_BUCKET_NAME = 'clpgestao'
-AWS_ACCESS_KEY_ID = 'AKIAI3MQ2K6D5HLV2RDA'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
-
-'''AWS_STORAGE_BUCKET_NAME = os.environ('S3_BN')
+AWS_STORAGE_BUCKET_NAME = os.environ('S3_BN')
 AWS_ACCESS_KEY_ID = os.environ('S3_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ('S3_PASS')
 AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
-'''
+
 STATICFILES_LOCATION = 'static'
 # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
