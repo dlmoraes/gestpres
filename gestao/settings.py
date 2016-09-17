@@ -126,11 +126,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 # Storages
 
-#AWS_HEADERS = {
-#    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
-#    'Cache-Control': 'max-age=9460800',
-#}
-
 '''AWS_STORAGE_BUCKET_NAME = os.environ('S3_BN')
 AWS_ACCESS_KEY_ID = os.environ('S3_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ('S3_PASS')
