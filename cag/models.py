@@ -1,8 +1,10 @@
 # coding=utf-8
+
 from django.db import models
 from django.urls import reverse_lazy
-from core.models import ControleTemporal
+
 from core.lists import SITUACAO_CHOICES
+from core.models import ControleTemporal
 from .lists import UF_CHOICES, CONDICAO_PREDIO_CHOICES
 
 class Empresa(ControleTemporal):

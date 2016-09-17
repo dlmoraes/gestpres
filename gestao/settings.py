@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
-    'storages',    
+    'storages',
     'core',
     'cag',
 ]
@@ -126,19 +126,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 # Storages
 
-AWS_STORAGE_BUCKET_NAME = os.environ('S3_BN')
-AWS_ACCESS_KEY_ID = os.environ('S3_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ('S3_PASS')
+AWS_STORAGE_BUCKET_NAME =  os.getenv('S3_BN', '')
+AWS_ACCESS_KEY_ID =  os.getenv('S3_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY =  os.getenv('S3_PASS', '')
 
 AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
 
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
+
 STATICFILES_LOCATION = 'static'
 
-# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-# STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-# STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 
-STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" %(AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
@@ -151,8 +154,6 @@ DATABASES['default'].update(db_from_env)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
-
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 # Auth
 LOGIN_URL = 'login'
