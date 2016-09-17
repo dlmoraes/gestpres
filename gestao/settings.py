@@ -131,24 +131,23 @@ USE_TZ = True
 #    'Cache-Control': 'max-age=9460800',
 #}
 
-if DEBUG:
-    AWS_STORAGE_BUCKET_NAME = os.environ('S3_BN')
-    AWS_ACCESS_KEY_ID = os.environ('S3_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.environ('S3_PASS')
+STATIC_URL = '/static/'
 
-    AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
+AWS_STORAGE_BUCKET_NAME = os.environ('S3_BN')
+AWS_ACCESS_KEY_ID = os.environ('S3_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ('S3_PASS')
 
-#  STATICFILES_LOCATION = 'static'
-#  STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-#  STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    STATIC_URL = '/static/'
-#    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
 
-    MEDIAFILES_LOCATION = 'media'
-    MEDIA_URL = "https://%s/%s/" %(AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+STATICFILES_LOCATION = 'static'
 
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+# STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
 
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = "https://%s/%s/" %(AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
