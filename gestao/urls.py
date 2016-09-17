@@ -1,7 +1,12 @@
 #coding=utf-8
+from copy import name
+
+from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.views import login, logout
+from django.views.static import serve as serve_static
+
 from core import views
 
 urlpatterns = [
