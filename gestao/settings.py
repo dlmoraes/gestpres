@@ -141,7 +141,7 @@ STATICFILES_LOCATION = 'static'
 #    os.path.join(PROJECT_ROOT, 'static'),
 # )
 
-# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" %(AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
