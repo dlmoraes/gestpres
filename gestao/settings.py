@@ -126,14 +126,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 # Storages
 
-'''AWS_STORAGE_BUCKET_NAME = os.environ('S3_BN')
+AWS_STORAGE_BUCKET_NAME = os.environ('S3_BN')
 AWS_ACCESS_KEY_ID = os.environ('S3_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ('S3_PASS')
 
 AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
 
-STATICFILES_LOCATION = 'static'
-'''
+# STATICFILES_LOCATION = 'static'
 
 # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 # STATICFILES_STORAGE = 'custom_storages.StaticStorage'
@@ -141,10 +140,10 @@ STATICFILES_LOCATION = 'static'
 
 STATIC_URL = '/static/'
 
-'''MEDIAFILES_LOCATION = 'media'
+MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" %(AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-'''
+
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
