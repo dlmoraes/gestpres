@@ -132,7 +132,7 @@ AWS_SECRET_ACCESS_KEY = os.environ('S3_PASS')
 
 AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
 
-# STATICFILES_LOCATION = 'static'
+STATICFILES_LOCATION = 'static'
 
 # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 # STATICFILES_STORAGE = 'custom_storages.StaticStorage'
