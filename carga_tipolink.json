@@ -1,0 +1,56 @@
+[
+{
+  "fields": {
+    "nome": "Fibra Optica",
+    "dt_criado": "2016-09-12T16:26:00+00:00",
+    "dt_modificado": "2016-09-12T16:26:00+00:00"
+  },
+  "model": "cag.TipoLink",
+  "pk": 1
+},
+{
+  "fields": {
+    "nome": "Link Oi",
+    "dt_criado": "2016-09-12T16:26:00+00:00",
+    "dt_modificado": "2016-09-12T16:26:00+00:00"
+  },
+  "model": "cag.TipoLink",
+  "pk": 2
+},
+{
+  "fields": {
+    "nome": "Modem 3G",
+    "dt_criado": "2016-09-12T16:26:00+00:00",
+    "dt_modificado": "2016-09-12T16:26:00+00:00"
+  },
+  "model": "cag.TipoLink",
+  "pk": 3
+},
+{
+  "fields": {
+    "nome": "Off",
+    "dt_criado": "2016-09-12T16:26:00+00:00",
+    "dt_modificado": "2016-09-12T16:26:00+00:00"
+  },
+  "model": "cag.TipoLink",
+  "pk": 4
+},
+{
+  "fields": {
+    "nome": "Provedor De Internet",
+    "dt_criado": "2016-09-12T16:26:00+00:00",
+    "dt_modificado": "2016-09-12T16:26:00+00:00"
+  },
+  "model": "cag.TipoLink",
+  "pk": 5
+},
+{
+  "fields": {
+    "nome": "Via Radio",
+    "dt_criado": "2016-09-12T16:26:00+00:00",
+    "dt_modificado": "2016-09-12T16:26:00+00:00"
+  },
+  "model": "cag.TipoLink",
+  "pk": 6
+}
+]
