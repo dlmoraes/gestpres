@@ -1,0 +1,30 @@
+{% extends 'table.html' %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li class="active">Pontos de Atendimentos</li>
+{% endblock %}
+
+{% block titulo_container %}
+    Pontos de Atendimentos
+{% endblock %}
+
+{% block head_table %}
+    <tr>
+        <th>#</th>
+        <th>Tipologia</th>
+        <th>Nome</th>
+        <th>Qtd</th>
+    </tr>
+{% endblock %}
+
+{% block body_table %}
+    {% for pa in pas %}
+        <tr>
+            <td>{{ pa.pk }}</td>
+            <td>{{ pa.nome }}</td>
+            <td>{{ pa.tipologia }}</td>
+            <td>{{ pa.qtd }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

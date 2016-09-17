@@ -1,0 +1,53 @@
+{% extends 'table.html' %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li><a href="#">Agências</a></li>
+    <li class="active">Agências cadastradas</li>
+{% endblock %}
+
+{% block titulo_container %}
+    Agências
+{% endblock %}
+
+{% block head_table %}
+    <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Empresa</th>
+        <th>Regional</th>
+        <th>Base</th>
+        <th>Situação</th>
+        <th>Credenciado?</th>
+    </tr>
+{% endblock %}
+
+{% block body_table %}
+    {% for agencia in agencias %}
+        <tr>
+            <td>{{ agencia.pk }}</td>
+            <td>
+                <a href="{{ agencia.get_absolute_url }}">
+                    {{ agencia.nome }}
+                </a>
+            </td>
+            <td>{{ agencia.empresa }}</td>
+            <td>{{ agencia.regional }}</td>
+            <td>{{ agencia.baseregional }}</td>
+            <td>
+                {% if agencia.situacao == 'AT' %}
+                    <span class="label label-info">Ativo</span>
+                {% else %}
+                    <span class="label label-danger">Inativo</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if agencia.is_credenciado %}
+                    <span class="label label-default">Credenciado</span>
+                {% else %}
+                    <span class="label label-primary">Agência</span>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

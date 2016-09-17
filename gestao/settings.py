@@ -23,7 +23,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = '_=pk!e!057v_h0k4b)9m!%84b#38vtvksjz2q%^38_ri24afho'
-SECRET_KEY = os.getenv('SECRET_KEY', '1390st1989')
+SECRET_KEY = os.getenv('SECRET_KEY', '123')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'storages',    
+    'core',
+    'cag',
 ]
 
 MIDDLEWARE = [
@@ -129,20 +131,22 @@ USE_TZ = True
 #    'Cache-Control': 'max-age=9460800',
 #}
 
-AWS_STORAGE_BUCKET_NAME = os.environ('S3_BN')
-AWS_ACCESS_KEY_ID = os.environ('S3_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ('S3_PASS')
-AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
+if DEBUG:
+    AWS_STORAGE_BUCKET_NAME = os.environ('S3_BN')
+    AWS_ACCESS_KEY_ID = os.environ('S3_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ('S3_PASS')
 
-STATICFILES_LOCATION = 'static'
+    AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
+
+    STATICFILES_LOCATION = 'static'
 # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 # STATIC_URL = '/static/'
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
 
-MEDIAFILES_LOCATION = 'media'
-MEDIA_URL = "https://%s/%s/" %(AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
-DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+    MEDIA_URL = "https://%s/%s/" %(AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)

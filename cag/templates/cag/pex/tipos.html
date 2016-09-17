@@ -1,0 +1,26 @@
+{% extends 'table.html' %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li class="active">Tipologias</li>
+{% endblock %}
+
+{% block titulo_container %}
+    Tipologias
+{% endblock %}
+
+{% block head_table %}
+    <tr>
+        <th>#</th>
+        <th>Nome</th>
+    </tr>
+{% endblock %}
+
+{% block body_table %}
+    {% for tipo in tipos %}
+        <tr>
+            <td>{{ tipo.pk }}</td>
+            <td>{{ tipo.nome }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'table.html' %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li class="active"><a href="{% url 'cag:empresas' %}">Empresas</a></li>
+{% endblock %}
+
+{% block titulo_container %}
+    Empresas
+{% endblock %}
+
+{% block head_table %}
+    <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Sigla</th>
+        <th></th>
+    </tr>
+{% endblock %}
+
+{% block body_table %}
+    {% for empresa in empresas %}
+        <tr>
+            <td>{{ empresa.pk }}</td>
+            <td>{{ empresa.nome }}</td>
+            <td>{{ empresa.sigla }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li><a href="{% url 'cag:agencias' %}">Agências</a></li>
+    <li class="active">Detalhes da agência</li>
+{% endblock %}
+
+{% block container %}
+    <!-- PAGE TITLE -->
+    <div class="page-title">
+        <h2><span class="fa fa-arrow-circle-o-left"></span> Detalhes da agência</h2>
+    </div>
+    <!-- END PAGE TITLE -->
+    <div class="page-content-wrap">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Relatório da agência: <strong>{{ agencia }}</strong></h3>
+                        <div style="float: right;">
+                            {% if agencia.is_credenciado %}
+                                <span class="label label-default"
+                                      style="font-size: 14px">Credenciado</span>
+                            {% else %}
+                                <span class="label label-primary"
+                                      style="font-size: 14px">Agência</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <!-- START TABS -->
+                        <div class="panel panel-default tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Dados
+                                    cadastrados</a></li>
+                                <li><a href="#tab-second" role="tab" data-toggle="tab">Informações de
+                                    Localização</a></li>
+                                <li><a href="#tab-third" role="tab" data-toggle="tab">Informações de
+                                    Contato</a></li>
+                                <li><a href="#tab-fourth" role="tab" data-toggle="tab">Informações de
+                                    Infra-Estrutura</a></li>
+                            </ul>
+                            <div class="panel-body tab-content">
+                                <div class="tab-pane active" id="tab-first">
+                                    <div class="panel-body list-group list-group-contacts">
+                                        <p>
+                                            <strong>Nome:</strong> {{ agencia.nome }}
+                                        </p>
+                                        <p>
+                                            <strong>Empresa:</strong> {{ agencia.empresa }}
+                                        </p>
+                                        <p>
+                                            <strong>Regional:</strong> {{ agencia.regional }}
+                                        </p>
+                                        <p>
+                                            <strong>Base:</strong> {{ agencia.baseregional }}
+                                        </p>
+                                        <p>
+                                            <strong>Unidade Consumidora:</strong> {{ agencia.detalhes.uc }}
+                                        </p>
+                                        <p>
+                                            <span class="fa fa-bolt fa-2x"></span>
+                                            {% if agencia.situacao == 'AT' %}
+                                                <span class="label label-info label-form">Ativo</span>
+                                            {% else %}
+                                                <span class="label label-danger label-form">Inativo</span>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab-second">
+                                    <div class="panel-body list-group list-group-contacts">
+                                        <p>
+                                            <strong>Endereço:</strong> {{ agencia.detalhes.logradouro }}
+                                        </p>
+                                        <p>
+                                            <strong>Número:</strong> {{ agencia.detalhes.numero }}
+                                        </p>
+                                        <p>
+                                            <strong>Bairro:</strong> {{ agencia.detalhes.bairro }}
+                                        </p>
+                                        <p>
+                                            <strong>Município:</strong> {{ agencia.detalhes.municipio }}
+                                        </p>
+                                        <p>
+                                            <strong>Estado:</strong> {{ agencia.detalhes.uf }}
+                                        </p>
+                                        <p>
+                                            <strong>CEP:</strong> {{ agencia.detalhes.cep }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab-third">
+                                    <div class="panel-body list-group list-group-contacts">
+                                        <p>
+                                            <strong>Telefone
+                                                residencial:</strong> {{ agencia.detalhes.tel_residencial }}
+                                        </p>
+                                        <p>
+                                            <strong>Celular:</strong> {{ agencia.detalhes.tel_celular }}
+                                        </p>
+                                        <p>
+                                            <strong>E-mail:</strong> {{ agencia.detalhes.email }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab-fourth">
+                                    <div class="panel-body list-group list-group-contacts">
+                                        <p>
+                                            <strong>Tipo de Link:</strong> {{ agencia.detalhes.link }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END TABS -->
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- START CONTENT FRAME -->
+    <div class="content-frame">
+
+        <!-- START CONTENT FRAME TOP -->
+        <div class="content-frame-top">
+            <div class="page-title">
+                <h2><span class="fa fa-image"></span> Gallery</h2>
+            </div>
+        </div>
+        <!-- START CONTENT FRAME BODY -->
+        <div class="content-frame-body content-frame-body-left">
+
+            <div class="gallery" id="links">
+                {% for galeria in galerias %}
+                    <a class="gallery-item" href="{{ galeria.foto.url }}" title="{{ galeria.foto }}" data-gallery>
+                    <div class="thumbnail">
+                        <div class="image">
+                            <img height="120px" width="40px" src="{{ galeria.foto.url }}" alt="{{ galeria.foto }}"/>
+                        </div>
+                        <div class="meta">
+                            <strong>{{ agencia }}</strong>
+                            <span>{{ galeria.descricao }}</span>
+                        </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- BLUEIMP GALLERY -->
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+    </div>
+    <!-- END BLUEIMP GALLERY -->
+{% endblock %}
+
+{% block scripts_body %}
+    <script type="text/javascript" src="{% static "js/plugins/blueimp/jquery.blueimp-gallery.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/dropzone/dropzone.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/icheck/icheck.min.js" %}"></script>
+{% endblock %}
+
+{% block code_scripts %}
+    <script>
+        document.getElementById('links').onclick = function (event) {
+            event = event || window.event;
+            var target = event.target || event.srcElement;
+            var link = target.src ? target.parentNode : target;
+            var options = {
+                index: link, event: event, onclosed: function () {
+                    setTimeout(function () {
+                        $("body").css("overflow", "");
+                    }, 200);
+                }
+            };
+            var links = this.getElementsByTagName('a');
+            blueimp.Gallery(links, options);
+        };
+    </script>
+{% endblock %}

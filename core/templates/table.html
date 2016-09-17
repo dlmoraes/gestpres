@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block container %}
+
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- START DATATABLE EXPORT -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{% block titulo_container %} {% endblock %}</h3>
+                        <div class="btn-group pull-right">
+                            {% block add_buttons %} {% endblock %}
+                            <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i
+                                    class="fa fa-bars"></i>
+                                Exportar dados
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"
+                                       onClick="$('#td_padrao').tableExport({type:'json',escape:'false'});"><img
+                                        src='{% static 'img/icons/json.png' %}' width="24"/> JSON</a></li>
+                                <li><a href="#"
+                                       onClick="$('#td_padrao').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img
+                                        src='{% static 'img/icons/json.png' %}' width="24"/> JSON (ignoreColumn)</a>
+                                </li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'json',escape:'true'});"><img
+                                        src='{% static 'img/icons/json.png' %}' width="24"/> JSON (with Escape)</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'xml',escape:'false'});"><img
+                                        src='{% static 'img/icons/xml.png' %}' width="24"/> XML</a></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'sql'});"><img
+                                        src='{% static 'img/icons/sql.png' %}'
+                                        width="24"/> SQL</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'csv',escape:'false'});"><img
+                                        src='{% static 'img/icons/csv.png' %}' width="24"/> CSV</a></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'txt',escape:'false'});"><img
+                                        src='{% static 'img/icons/txt.png' %}' width="24"/> TXT</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"
+                                       onClick="$('#td_padrao').tableExport({type:'excel',escape:'false'});"><img
+                                        src='{% static 'img/icons/xls.png' %}' width="24"/> XLS</a></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'doc',escape:'false'});"><img
+                                        src='{% static 'img/icons/word.png' %}' width="24"/> Word</a></li>
+                                <li><a href="#"
+                                       onClick="$('#td_padrao').tableExport({type:'powerpoint',escape:'false'});"><img
+                                        src='{% static 'img/icons/ppt.png' %}' width="24"/> PowerPoint</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'png',escape:'false'});"><img
+                                        src='{% static 'img/icons/png.png' %}' width="24"/> PNG</a></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'pdf',escape:'false'});"><img
+                                        src='{% static 'img/icons/pdf.png' %}' width="24"/> PDF</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="panel-body">
+                        <table id="td_padrao" class="table datatable">
+                            <thead>
+                            {% block head_table %} {% endblock %}
+                            </thead>
+                            <tbody>
+                            {% block body_table %} {% endblock %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END DATATABLE EXPORT -->
+    </div>
+    <!-- END PAGE CONTENT WRAPPER -->
+
+{% endblock %}
+
+{% block code_scripts %}
+    <script type="text/javascript" src="{% static "js/plugins/datatables/jquery.dataTables.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/tableexport/tableExport.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/tableexport/jquery.base64.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/tableexport/html2canvas.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/tableexport/jspdf/libs/sprintf.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/tableexport/jspdf/jspdf.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/tableexport/jspdf/libs/base64.js" %}"></script>
+{% endblock %}

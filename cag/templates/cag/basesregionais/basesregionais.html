@@ -1,0 +1,28 @@
+{% extends 'table.html' %}
+
+{% block breadcrumb %}
+    <li><a href="#">Bases Regionais</a></li>
+    <li class="active">Bases Regionais cadastradas</li>
+{% endblock %}
+
+{% block titulo_container %}
+    Bases Regionais
+{% endblock %}
+
+{% block head_table %}
+    <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th></th>
+    </tr>
+{% endblock %}
+
+{% block body_table %}
+    {% for base in bases %}
+        <tr>
+            <td>{{ base.pk }}</td>
+            <td>{{ base.nome }}</td>
+            <td><span class="label label-info label-form">{{ base.get_bases_count }} Agências </span></td>
+        </tr>
+    {% endfor %}
+{% endblock %}

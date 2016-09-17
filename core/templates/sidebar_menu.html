@@ -1,0 +1,49 @@
+{% load staticfiles %}
+
+<ul class="x-navigation">
+    <li class="xn-logo">
+        <a href="#">Gestão</a>
+        <a href="#" class="x-navigation-control"></a>
+    </li>
+    <li class="xn-profile">
+        <a href="#" class="profile-mini">
+            <img src="{% static "assets/images/users/no-image.jpg" %}" alt="{{ user }}"/>
+        </a>
+        <div class="profile">
+            <div class="profile-image">
+            <img src="{% static "assets/images/users/no-image.jpg" %}" alt="{{ user }}"/>
+            </div>
+            <div class="profile-data">
+                <div class="profile-data-name">{{ user }}</div>
+            </div>
+            <div class="profile-controls">
+            </div>
+        </div>
+    </li>
+    <li class="xn-title">Navegação</li>
+    <li class="xn-openable">
+        <a href="#"><span class="fa fa-home"></span> <span class="xn-text">Presencial</span></a>
+        <ul>
+            <li>
+                <a href="{% url 'cag:empresas' %}"><span class="fa fa-building-o"></span> <span
+                        class="xn-text">Empresas</span></a>
+            </li>
+            <li><a href="{% url 'cag:regionais' %}"><span class="fa fa-globe"></span> Regionais</a></li>
+            <li><a href="{% url 'cag:basesregionais' %}"><span class="fa fa-globe"></span> Bases Regionais</a></li>
+            <li><a href="{% url 'cag:agencias' %}"><span class="fa fa-home"></span> Agências</a></li>
+            <li class="xn-openable">
+                <a href="#"><span class="fa fa-table"></span> <span class="xn-text">Infra-Estrutura</span></a>
+                <ul>
+                    <li><a href="{% url 'cag:links' %}"><span class="fa fa-signal"></span> Links</a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li class="xn-openable">
+        <a href="#"><span class="fa fa-desktop"></span> <span class="xn-text">Pex</span></a>
+        <ul>
+            <li><a href="{% url 'cag:tipos' %}"><span class="fa fa-bookmark"></span> Tipologias</a></li>
+            <li><a href="{% url 'cag:pas' %}"><span class="fa fa-group"></span> PA's</a></li>
+        </ul>
+    </li>
+</ul>

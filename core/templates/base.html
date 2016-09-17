@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <!-- META SECTION -->
+    <title>Sistema de Gestão</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="icon" href="{% static "favicon.ico" %}" type="image/x-icon"/>
+    <!-- END META SECTION -->
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/jquery/jquery-ui.min.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap/bootstrap.min.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/fontawesome/font-awesome.min.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/summernote/summernote.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/codemirror/codemirror.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/nvd3/nv.d3.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/mcustomscrollbar/jquery.mCustomScrollbar.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/fullcalendar/fullcalendar.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/blueimp/blueimp-gallery.min.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/rickshaw/rickshaw.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/dropzone/dropzone.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/animate/animate.min.css" %}"/>
+
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" type="text/css" id="theme" href="{% static "css/theme-default.css" %}"/>
+    <!-- EOF CSS INCLUDE -->
+
+    {% block css_or_script_head %}{% endblock %}
+</head>
+<body>
+<!-- START PAGE CONTAINER -->
+<div class="page-container">
+
+    <!-- START PAGE SIDEBAR -->
+    <div class="page-sidebar">
+        <!-- START X-NAVIGATION -->
+        {% include 'sidebar_menu.html' %}
+        <!-- END X-NAVIGATION -->
+    </div>
+    <!-- END PAGE SIDEBAR -->
+
+    <!-- PAGE CONTENT -->
+    <div class="page-content">
+
+        <!-- START X-NAVIGATION VERTICAL -->
+        {% include 'top.html' %}
+        <!-- END X-NAVIGATION VERTICAL -->
+
+        <!-- START BREADCRUMB -->
+        <ul class="breadcrumb">
+            {% block breadcrumb %}
+
+                <li><a href="#">Home</a></li>
+                <!--<li><a href="#">Tables</a></li>
+                <li class="active">Data Tables</li>-->
+
+            {% endblock %}
+        </ul>
+        <!-- END BREADCRUMB -->
+
+        {% block container %} {% endblock %}
+
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+
+<!-- MESSAGE BOX-->
+<div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-sign-out"></span> <strong>Sair</strong> ?</div>
+            <div class="mb-content">
+                <p>Tem certeza que deseja sair?</p>
+                <p>Pressione Não, se pretender continuar o trabalho. Pressione Sim para sair.</p>
+            </div>
+            <div class="mb-footer">
+                <div class="pull-right">
+                    <a href="{% url 'logout' %}" class="btn btn-success btn-lg">Sim</a>
+                    <button class="btn btn-default btn-lg mb-control-close">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MESSAGE BOX-->
+
+<!-- START PRELOADS -->
+{% block preloads_body %}{% endblock %}
+<!-- END PRELOADS -->
+
+<!-- START SCRIPTS -->
+<!-- START PLUGINS -->
+<script type="text/javascript" src="{% static "js/plugins/jquery/jquery.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/plugins/jquery/jquery-ui.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/plugins/bootstrap/bootstrap.min.js" %}"></script>
+<!-- END PLUGINS -->
+
+<!-- THIS PAGE PLUGINS -->
+<script type="text/javascript" src="{% static "js/plugins/icheck/icheck.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js" %}"></script>
+{% block scripts_body %}{% endblock %}
+<!-- END PAGE PLUGINS -->
+
+<!-- START TEMPLATE -->
+
+<script type="text/javascript" src="{% static "js/plugins.js" %}"></script>
+<script type="text/javascript" src="{% static "js/actions.js" %}"></script>
+<!-- END TEMPLATE -->
+{% block code_scripts %} {% endblock %}
+<!-- END SCRIPTS -->
+
+</body>
+</html>
+
+
+
+
+
+
