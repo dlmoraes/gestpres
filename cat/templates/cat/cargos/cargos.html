@@ -1,0 +1,27 @@
+{% extends 'table.html' %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li><a href="#">Cargos</a></li>
+    <li class="active">Cargos cadastrados</li>
+{% endblock %}
+
+{% block titulo_container %}
+    Cargos
+{% endblock %}
+
+{% block head_table %}
+    <tr>
+        <th>#</th>
+        <th>Nome</th>
+    </tr>
+{% endblock %}
+
+{% block body_table %}
+    {% for cargo in cargos %}
+        <tr>
+            <td>{{ cargo.pk }}</td>
+            <td>{{ cargo.nome }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'table.html' %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li><a href="#">Pessoas</a></li>
+    <li class="active">Pessoas cadastradas</li>
+{% endblock %}
+
+{% block titulo_container %}
+    Pessoas
+{% endblock %}
+
+{% block head_table %}
+    <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Dta Nasc.</th>
+        <th>Sexo</th>
+    </tr>
+{% endblock %}
+
+{% block body_table %}
+    {% for pessoa in pessoas %}
+        <tr>
+            <td>{{ pessoa.pk }}</td>
+            <td>{{ pessoa.nome }}</td>
+            <td>{{ pessoa.dta_nascimento }}</td>
+            <td>{{ pessoa.sexo }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

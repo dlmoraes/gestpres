@@ -1,0 +1,33 @@
+{% extends 'table.html' %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li><a href="#">Pessoas</a></li>
+    <li class="active">Pessoas cadastradas</li>
+{% endblock %}
+
+{% block titulo_container %}
+    Pessoas
+{% endblock %}
+
+{% block head_table %}
+    <tr>
+        <th>#</th>
+        <th>Matricula</th>
+        <th>Nome</th>
+        <th>Cargo</th>
+        <th>Agência</th>
+    </tr>
+{% endblock %}
+
+{% block body_table %}
+    {% for atendente in atendentes %}
+        <tr>
+            <td>{{ atendente.pk }}</td>
+            <td>{{ atendente.matricula }}</td>
+            <td>{{ atendente.pessoa.nome }}</td>
+            <td>{{ atendente.cargo }}</td>
+            <td>{{ atendente.agencia }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}

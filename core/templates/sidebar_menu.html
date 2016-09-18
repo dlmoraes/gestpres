@@ -11,7 +11,7 @@
         </a>
         <div class="profile">
             <div class="profile-image">
-            <img src="{% static "assets/images/users/no-image.jpg" %}" alt="{{ user }}"/>
+                <img src="{% static "assets/images/users/no-image.jpg" %}" alt="{{ user }}"/>
             </div>
             <div class="profile-data">
                 <div class="profile-data-name">{{ user }}</div>
@@ -44,6 +44,14 @@
         <ul>
             <li><a href="{% url 'cag:tipos' %}"><span class="fa fa-bookmark"></span> Tipologias</a></li>
             <li><a href="{% url 'cag:pas' %}"><span class="fa fa-group"></span> PA's</a></li>
+        </ul>
+    </li>
+    <li class="xn-openable">
+        <a href="#"><span class="fa fa-users"></span> <span class="xn-text">Pessoas/Atendentes</span></a>
+        <ul>
+            <li><a href="{% url 'cat:cargos' %}"><span class="fa fa-table"></span> Cargos</a></li>
+            <li><a href="{% url 'cat:pessoas' %}"><span class="fa fa-users"></span> Pessoas</a></li>
+            <li><a href="{% url 'cat:atendentes' %}"><span class="fa fa-users"></span> Atendentes</a></li>
         </ul>
     </li>
 </ul>
