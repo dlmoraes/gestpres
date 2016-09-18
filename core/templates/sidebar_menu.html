@@ -7,16 +7,30 @@
     </li>
     <li class="xn-profile">
         <a href="#" class="profile-mini">
-            <img src="{% static "assets/images/users/no-image.jpg" %}" alt="{{ user }}"/>
+            {% if user.profile.avatar.url %}
+                <img src="{{ user.profile.avatar.url }}" alt="{{ user }}"/>
+            {% else %}
+                <img src="{% static "assets/images/users/no-image.jpg" %}" alt="{{ user }}"/>
+            {% endif %}
         </a>
         <div class="profile">
             <div class="profile-image">
+            {% if user.profile.avatar.url %}
+                <img src="{{ user.profile.avatar.url }}" alt="{{ user }}"/>
+            {% else %}
                 <img src="{% static "assets/images/users/no-image.jpg" %}" alt="{{ user }}"/>
+            {% endif %}
             </div>
             <div class="profile-data">
                 <div class="profile-data-name">{{ user }}</div>
             </div>
             <div class="profile-controls">
+                <a href="{% url 'admin:index' %}" class="profile-control-left">
+                    <span class="fa fa-key"></span>
+                </a>
+                <a href="{% url 'accounts:index' %}" class="profile-control-right">
+                    <span class="fa fa-book"></span>
+                </a>
             </div>
         </div>
     </li>
