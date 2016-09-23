@@ -3,7 +3,7 @@
 # Connector for elFinder File Manager
 # author Troex Nevelin <troex@fury.scancode.ru>
 
-import cgi
+'''import cgi
 import hashlib
 import json
 import mimetypes
@@ -1423,5 +1423,4 @@ class connector():
 		if not ret in validReturn:
 			return False
 
-		return True
-
+		return True'''

@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'storages',
+#    'debug_toolbar',
     'core',
     'cag',
     'cat',
     'accounts',
+    'ctr',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +80,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'gestao.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases

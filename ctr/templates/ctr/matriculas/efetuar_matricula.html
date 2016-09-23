@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block css_or_script_head %}
+    <!-- Select2 -->
+    <link href="{% static "js/plugins/select2/dist/css/select2.min.css" %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block container %}
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <form id="form_tre" class="form-horizontal" method="post" role="form">
+                    {% csrf_token %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong>{{ titulo }}</strong></h3>
+                            <ul class="panel-controls">
+                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="panel-body">
+                            {% for field in form %}
+                                <div class="form-group {% if field.errors %} has-error {% endif %}">
+                                    <label class="col-md-3 col-xs-12 control-label"
+                                           for="{{ field.auto_id }}">{{ field.label }}</label>
+                                    <div class="col-md-6 col-xs-12">
+                                        {% if field.label == 'Tipo' or field.label == 'Prazo' %}
+                                            {% render_field field class='form-control select2_single' %}
+                                        {% elif field.label == 'Título' %}
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span
+                                                        class="fa fa-pencil"></span></span>
+
+                                                {% render_field field class='form-control' %}
+                                            </div>
+                                        {% else %}
+                                            {% render_field field class='form-control' %}
+                                        {% endif %}
+                                        <span class="help-block">{{ field.help_text }}</span>
+                                        {% if field.errors %}<p class="help-block">
+                                            {% for error in field.errors %}{{ error }}{% endfor %}</p>{% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {{ formset.management_form }}
+                            {% for form in formset %}
+                                {% for error in form.non_field_errors %}
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                                aria-hidden="true">&times;</button>
+                                        <h3><i class="icon fa fa-ban"></i> Erro!</h3>
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                                {{ form.id }}
+                                <div class="inline {{ formset.prefix }} form-group">
+                                    <label class="col-md-3 col-xs-12 control-label"
+                                           for="{{ form.pessoa.tag_label }}">{{ form.pessoa.label }}</label>
+                                    <div class="col-md-6 col-xs-12">
+                                        {% render_field form.pessoa class='select2_single form-control' tabindex="-1" %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="panel-footer">
+                            <a class="btn btn-default" href="{% url 'ctr:treinamentos' %}"
+                               title="Retorna para a página de treinamentos.">Voltar</a>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- END PAGE CONTENT WRAPPER -->
+{% endblock %}
+
+{% block scripts_body %}
+    <script type="text/javascript" src="{% static "js/plugins/formset/jquery.formset.js" %}"></script>
+    <!-- Select2 -->
+    <script src="{% static "js/plugins/select2/dist/js/select2.full.min.js" %}"></script>
+{% endblock %}
+
+{% block code_scripts %}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".inline.{{ formset.prefix }}").formset({
+                prefix: "{{ formset.prefix }}",
+                addText: "adicionar pessoa",
+                deleteText: "remover"
+            });
+
+            $(".delete-row").addClass('btn btn-danger btn-rounded');
+
+            $(".select2_single").select2({
+                placeholder: "Selecione uma pessoa.",
+                allowClear: true
+            });
+
+            $("#id_prazo").select2({placeholder: 'Selecione um tipo de prazo.'});
+
+            $(".add-row").on("click", function () {
+                $(".select2_single").select2({
+                    placeholder: "Selecione uma pessoa.",
+                    allowClear: true
+                });
+                $("#id_prazo").select2({placeholder: 'Selecione um tipo de prazo.'});
+            });
+            $(".add-row").attr('class', 'btn btn-primary btn-rounded ').attr('onclick', "$('.delete-row').addClass('btn btn-danger btn-rounded');");
+
+        });
+    </script>
+
+{% endblock %}
+

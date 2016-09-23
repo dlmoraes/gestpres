@@ -70,4 +70,11 @@ share/
 .directory
 pip-selfcheck.json
 
+custom_middleware.py
 local_settings.py
+
+gestao/media/
+core/static/js/jquery_2_1_4.min.js
+core/static/js/plugins/jquery/jquery-3.1.0.js
+core/static/js/plugins/jquery/jquery-3.1.0.min.js
+

@@ -35,7 +35,7 @@ class AtendenteList(ListView):
     context_object_name = 'atendentes'
 
     def get_queryset(self):
-        return super(AtendenteList, self).get_queryset().select_related('pessoa', 'cargo')
+        return super(AtendenteList, self).get_queryset().select_related('pessoa', 'cargo', 'agencia').all()
 
 
 # Creates

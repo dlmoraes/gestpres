@@ -1,0 +1,64 @@
+{% extends 'table.html' %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li><a href="{% url 'ctr:treinamentos' %}">Treinamentos</a></li>
+    <li class="active">Matriculados</li>
+{% endblock %}
+
+{% block titulo_container %}
+    Matriculados
+{% endblock %}
+
+{% block head_table %}
+    <tr>
+        <th>#</th>
+        <th>Treinamento</th>
+        <th>Pessoa/Atendente</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+{% endblock %}
+
+{% block body_table %}
+    {% for matricula in matriculas %}
+        <tr>
+            <td>{{ matricula.pk }}</td>
+            <td>
+                {{ matricula.treinamento.titulo }}
+            </td>
+            <td>
+                <a href="{{ matricula.get_absolute_url }}" class="btn-link">
+                    {{ matricula.pessoa }}
+                </a>
+            </td>
+            <td>
+                <span class="label label-info label-form">
+                    {% comment %}{% if matricula.get_status_matriculado > 1 %}
+                        Avaliações realizadas
+                    {% elif matricula.get_status_matriculado == 1 %}
+                        Avaliação realizada
+                    {% else %}
+                        {{ matricula.get_status_matriculado }}
+                    {% endif %}{% endcomment %}
+                    {% if matricula.status == 'naoavaliado' %}
+                        Não avaliado
+                    {% elif matricula.status == 'aprovado' %}
+                        Aprovado
+                    {% elif matricula.status == 'recuperacao' %}
+                        Recuperação
+                    {% elif matricula.status == 'reprovado' %}
+                        Reprovado
+                    {% endif %}
+                </span>
+            </td>
+            <td>
+                {% if matricula.get_qtd_provas_lancadas >= 1 %}
+                    {% for a in matricula.matriculas.all %}
+                        {{ a.get_status }}
+                    {% endfor %}
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

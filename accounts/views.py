@@ -18,7 +18,8 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        atividades = LogEntry.objects.filter(user=self.request.user)[:10]
+        perfil = Perfil.objects.select_related('pessoa', 'regional', 'baseregional', 'empresa').prefetch_related('pessoa__pessoa', 'pessoa__pessoa__agencia', 'pessoa__pessoa__cargo').get(user=self.request.user)
+        atividades = LogEntry.objects.select_related('content_type').filter(user=self.request.user, action_time__gte=datetime.date.today())
         dados_graf = LogEntry.objects.select_related('user')\
             .filter(user=self.request.user, action_time__year=datetime.date.today().year)\
             .dates('action_time', 'month')\
@@ -28,6 +29,7 @@ class IndexView(LoginRequiredMixin, TemplateView):
             .values('month', 'c').order_by('month')
         context['atividades'] = atividades
         context['dados_graf'] = dados_graf
+        context['perfil'] = perfil
         return context
 
 class AlterarAvatar(LoginRequiredMixin, UpdateView):

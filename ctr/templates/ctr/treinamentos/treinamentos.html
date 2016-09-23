@@ -1,0 +1,60 @@
+{% extends 'table.html' %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li><a href="#">Treinamentos</a></li>
+    <li class="active">Treinamentos cadastrados</li>
+{% endblock %}
+
+{% block titulo_container %}
+    Treinamentos
+{% endblock %}
+
+{% block add_buttons %}
+    <a style="margin-right: 10px" class="btn btn-default" href="{% url 'ctr:treinamento_inicial_add' %}">
+        <span class="fa fa-plus-circle"></span>Treinamento Inicial
+    </a>
+    <a style="margin-right: 10px" class="btn btn-primary" href="{% url 'ctr:treinamento_rotina_add' %}">
+        <span class="fa fa-plus-circle"></span>Treinamento Rotina
+    </a>
+{% endblock %}
+
+{% block head_table %}
+    <tr>
+        <th>#</th>
+        <th>Título</th>
+        <th>Tipo</th>
+        <th>Status</th>
+        <th>Matriculados</th>
+    </tr>
+{% endblock %}
+
+{% block body_table %}
+    {% for treinamento in treinamentos %}
+        <tr>
+            <td>{{ treinamento.pk }}</td>
+            <td>
+                <a href="{{ treinamento.get_matricular_no_treinamento }}" title="Matricular pessoa/atendente neste treinamento.">
+                    {{ treinamento.titulo }}
+                </a>
+            </td>
+            <td>{{ treinamento.tipo|capfirst }}</td>
+            <td>
+                {% if treinamento.status == "EM" %}
+                    <span class="label label-default label-form">{{ treinamento.get_status_display }}</span>
+                {% elif treinamento.status == "CA" %}
+                    <span class="label label-danger label-form">{{ treinamento.get_status_display }}</span>
+                {% else %}
+                    <span class="label label-success label-form">{{ treinamento.get_status_display }}</span>
+                {% endif %}
+            </td>
+            <td>
+                   <a href="{{ treinamento.get_ver_matriculados }}">
+                        <span class="label label-default label-form">
+                            {{ treinamento.get_matriculados_count }} Matriculados
+                        </span>
+                   </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

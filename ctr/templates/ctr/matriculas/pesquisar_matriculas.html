@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li><a href="#">Treinamento</a></li>
+    <li class="active">Pesquisar matricula</li>
+{% endblock %}
+
+{% block container %}
+
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+                <form action="#pesquisar" role="form" method="get">
+                    {% csrf_token %}
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Pesquisa matricula</div>
+                            <ul class="panel-controls">
+                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-xs-12"
+                                       for="treinamento">Treinamento</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-pencil"></span>
+                                                </span>
+                                        <input id="treinamento" name="treinamento" type="text" class="form-control"
+                                               placeholder="Digite parte do título do treinamento."/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p></p><br/><br/><br/><b>Ou</b>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12"
+                                       for="pessoa">Pessoa</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-male"></span>
+                                                </span>
+                                        <input id="pessoa" name="pessoa" type="text" class="form-control"
+                                               placeholder="Digite parte do nome da pessoa."/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <br/><br/><br/><br/><b>Ou</b>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12"
+                                       for="matricula">Matricula</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-bookmark"></span>
+                                                </span>
+                                        <input id="matricula" name="matricula" type="text" class="form-control"
+                                               placeholder="Digite a matricula do atendente."/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="btn-group pull-right">
+                                <button class="btn btn-info"><span class="fa fa-search"></span>Pesquisar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- START DATATABLE EXPORT -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Resultado</h3>
+                        <ul class="panel-controls">
+                            <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                            <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
+                        </ul>
+                        <div class="btn-group pull-right">
+                            <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i
+                                    class="fa fa-bars"></i>
+                                Exportar dados
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"
+                                       onClick="$('#td_padrao').tableExport({type:'json',escape:'false'});"><img
+                                        src='{% static 'img/icons/json.png' %}' width="24"/> JSON</a></li>
+                                <li><a href="#"
+                                       onClick="$('#td_padrao').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img
+                                        src='{% static 'img/icons/json.png' %}' width="24"/> JSON (ignoreColumn)</a>
+                                </li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'json',escape:'true'});"><img
+                                        src='{% static 'img/icons/json.png' %}' width="24"/> JSON (with Escape)</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'xml',escape:'false'});"><img
+                                        src='{% static 'img/icons/xml.png' %}' width="24"/> XML</a></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'sql'});"><img
+                                        src='{% static 'img/icons/sql.png' %}'
+                                        width="24"/> SQL</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'csv',escape:'false'});"><img
+                                        src='{% static 'img/icons/csv.png' %}' width="24"/> CSV</a></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'txt',escape:'false'});"><img
+                                        src='{% static 'img/icons/txt.png' %}' width="24"/> TXT</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"
+                                       onClick="$('#td_padrao').tableExport({type:'excel',escape:'false'});"><img
+                                        src='{% static 'img/icons/xls.png' %}' width="24"/> XLS</a></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'doc',escape:'false'});"><img
+                                        src='{% static 'img/icons/word.png' %}' width="24"/> Word</a></li>
+                                <li><a href="#"
+                                       onClick="$('#td_padrao').tableExport({type:'powerpoint',escape:'false'});"><img
+                                        src='{% static 'img/icons/ppt.png' %}' width="24"/> PowerPoint</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'png',escape:'false'});"><img
+                                        src='{% static 'img/icons/png.png' %}' width="24"/> PNG</a></li>
+                                <li><a href="#" onClick="$('#td_padrao').tableExport({type:'pdf',escape:'false'});"><img
+                                        src='{% static 'img/icons/pdf.png' %}' width="24"/> PDF</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="panel-body">
+                        <table id="td_padrao" class="table datatable">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Treinamento</th>
+                                <th>Pessoa/Atendente</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for matricula in matriculas %}
+                                <tr>
+                                    <td>{{ matricula.pk }}</td>
+                                    <td>
+                                        {{ matricula.treinamento.titulo }}
+                                    </td>
+                                    <td>
+                                        <a href="{{ matricula.get_absolute_url }}">
+                                            {{ matricula.pessoa }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {% if matricula.status == 'naoavaliado' %}
+                                            <span class="label label-primary label-form">Não avaliado</span>
+                                        {% elif matricula.status == 'aprovado' %}
+                                            <span class="label label-success label-form">Aprovado</span>
+                                        {% elif matricula.status == 'recuperacao' %}
+                                            <span class="label label-warning label-form">Recuperação</span>
+                                        {% elif matricula.status == 'reprovado' %}
+                                            <span class="label label-danger label-form">Reprovado</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if matricula.get_status_matriculado >= 1 %}
+                                            {% for a in matricula.matriculas.all %}
+                                                {{ a.get_status }}
+                                            {% endfor %}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END DATATABLE EXPORT -->
+    </div>
+    <!-- END PAGE CONTENT WRAPPER -->
+
+{% endblock %}
+
+{% block code_scripts %}
+    <script type="text/javascript" src="{% static "js/plugins/datatables/jquery.dataTables.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/tableexport/tableExport.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/tableexport/jquery.base64.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/tableexport/html2canvas.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/tableexport/jspdf/libs/sprintf.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/tableexport/jspdf/jspdf.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/plugins/tableexport/jspdf/libs/base64.js" %}"></script>
+{% endblock %}

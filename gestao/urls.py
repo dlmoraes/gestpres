@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^controle_agencias/', include('cag.urls', namespace='cag')),
     url(r'^controle_pessoas/', include('cat.urls', namespace='cat')),
     url(r'^conta/', include('accounts.urls', namespace='accounts')),
+    url(r'^controle_treinamentos/', include('ctr.urls', namespace='ctr')),
     url(r'^admin/', admin.site.urls),
     url(r'^entrar/$', login, {'template_name' : 'login.html'}, name='login'),
     url(r'^sair/$', logout, {'next_page' : '/'}, name='logout'),    
@@ -24,3 +25,9 @@ if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
     )
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]

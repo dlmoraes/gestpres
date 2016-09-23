@@ -1,6 +1,7 @@
 #coding=utf-8
 from django.db import models
 from django.urls import reverse_lazy
+from django.core.validators import RegexValidator
 
 from core.lists import SITUACAO_CHOICES
 from core.models import ControleTemporal
@@ -19,7 +20,7 @@ class Cargo(ControleTemporal):
 class Pessoa(ControleTemporal, Endereco, Contato):
     nome = models.CharField(max_length=100, help_text='Informe o nome completo.')
     dta_nascimento = models.DateField('Data de nascimento')
-    doc_cpf = models.CharField('CPF', max_length=14, unique=True, help_text='Informe o CPF')
+    doc_cpf = models.CharField('CPF', max_length=14, unique=True, help_text='Informe o CPF', validators=[RegexValidator(regex="[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}")])
     doc_rg = models.CharField('RG', max_length=25, unique=True, help_text=u'Informe o RG, o registro informado deve ser único')
     sexo = models.CharField(max_length=1, choices=SEXO_CHOICES, null=True)
     foto = models.ImageField(upload_to='images/pessoa/', null=True, blank=True)
@@ -31,7 +32,7 @@ class Pessoa(ControleTemporal, Endereco, Contato):
         return self.nome
 
     def is_atendente(self):
-        return self.pessoa == None
+        return self.pessoa != None
 
 
     def get_absolute_url(self):
