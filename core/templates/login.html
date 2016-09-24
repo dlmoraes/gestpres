@@ -4,7 +4,7 @@
     {% load staticfiles %}
     {% load widget_tweaks %}
     <!-- META SECTION -->
-    <title>Joli Admin - Responsive Bootstrap Admin Template</title>
+    <title>Sistema de Gestão Estratégico</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -26,6 +26,21 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/animate/animate.min.css" %}"/>
     <link rel="stylesheet" type="text/css" id="theme" href="{% static "css/theme-default.css" %}"/>
     <!-- EOF CSS INCLUDE -->
+
+    <style>
+        .login-container {
+            position: absolute;
+            top: -40px;
+            left: -20px;
+            right: -40px;
+            bottom: 0%;
+            width: auto;
+            height: auto;
+            background-image: url("{% static "assets/login/gestao-de-grafica-digital.png" %}");
+            background-size: cover;
+            z-index: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,42 +48,46 @@
 <div class="login-container">
 
     <div class="login-box animated fadeInDown">
-        <!--<div class="login-logo">Gestão</div>-->
-        <div class="login-body">
-            {% for error in form.non_field_errors %}
-                <div class="alert alert-danger">
-                    {{ error }}
-                </div>
-            {% endfor %}
+        {% comment %}<div class="login-logo"></div>{% endcomment %}
+        <div class="login-body" style="margin-top: 20%">
             <div class="login-title"><strong>Bem-vindo</strong>, por favor entre</div>
-            <form action="#logar" class="form-horizontal" method="post">
+            <form action="." class="form-horizontal" method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     <div class="col-md-12">
-                        {% render_field form.username class="form-control" placeholder="Usuário" %}
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="fa fa-user" style="padding-bottom: 12px"></span>
+                            </span>
+                            {% render_field form.username|attr:"style: background: white; color: black" class="form-control" placeholder="Usuário" %}
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-12">
-                        {% render_field form.password class="form-control" placeholder="Senha" %}
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="fa fa-lock" style="padding-bottom: 12px"></span>
+                            </span>
+                            {% render_field form.password|attr:"style: background: white; color: black" class="form-control" placeholder="Senha" %}
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
+
                     <div class="col-md-6">
-                        <!--<a href="#" class="btn btn-link btn-block">Forgot your password?</a>-->
+                        {% comment %}
+                            <a href="#" class="btn btn-link btn-block">Forgot your password?</a>
+                        {% endcomment %}
                     </div>
+
                     <div class="col-md-6">
-                        <button class="btn btn-info btn-block">Entrar</button>
+                        <button class="btn btn-info btn-block"><span class="fa fa-unlock"></span>Entrar</button>
                     </div>
                 </div>
             </form>
         </div>
         <div class="login-footer">
-            <div class="pull-left">
-                &copy; 2016 Gestão
-            </div>
-            <div class="pull-right">
-            </div>
         </div>
     </div>
 

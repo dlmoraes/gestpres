@@ -1,5 +1,7 @@
 #coding=utf-8
 from django.contrib import admin
+
+from .forms import PerfilModelForm
 from .models import Perfil
 
 
@@ -9,3 +11,4 @@ class PerfilAdmin(admin.ModelAdmin):
     list_display = ['user', 'empresa', 'dt_criado', 'dt_modificado']
     search_fields = ['user']
     list_filter = ['empresa']
+    form = PerfilModelForm
